@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Trang chủ - Laptopshop</title>
+
+    <!-- Google Web Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@600;800&display=swap"
+          rel="stylesheet">
+
+    <!-- Icon Font Stylesheet -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+    <!-- Libraries Stylesheet -->
+    <link th:href="@{/client/lib/lightbox/css/lightbox.min.css}" rel="stylesheet">
+    <link th:href="@{/client/lib/owlcarousel/assets/owl.carousel.min.css}" rel="stylesheet">
+
+    <!-- Customized Bootstrap Stylesheet -->
+    <link th:href="@{/client/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Template Stylesheet -->
+    <link th:href="@{/client/css/style.css}" rel="stylesheet">
+    <style>
+        .fruite-item {
+            max-height: 550px;
+            max-width: 300px;
+            transition: 0.5s;
+            border-radius: 10px;
+            overflow: hidden;
+            background: #fff;
+            border: 1px solid #e9ecef;
+        }
+        .fruite-item:hover {
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+            transform: translateY(-5px);
+        }
+        .fruite-img {
+            overflow: hidden;
+            transition: 0.5s;
+            border-radius: 10px 10px 0 0;
+        }
+        .fruite-img img {
+            transition: 0.5s;
+        }
+        .fruite-img img:hover {
+            transform: scale(1.2);
+        }
+
+        .btn-add-to-cart {
+            background-color: transparent;
+            color: #81c408;
+            border: 2px solid #81c408;
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 80%;
+            text-align: center;
+        }
+
+        .btn-add-to-cart:hover {
+            background-color: #81c408;
+            color: #fff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-add-to-cart i {
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Spinner Start -->
+<div id="spinner"
+     class="show w-100 vh-100 bg-white position-fixed translate-middle top-50 start-50  d-flex align-items-center justify-content-center">
+    <div class="spinner-grow text-primary" role="status"></div>
+</div>
+<!-- Spinner End -->
+
+<!-- Navbar start -->
+<div th:insert="~{client/layout/header :: header}"></div>
+<!-- Navbar End -->
+
+<!-- Hero Start -->
+<div th:insert="~{client/layout/banner :: banner}"></div>
+<!-- Hero End -->
+
+<!-- Fruits Shop Start-->
+<div class="container-fluid fruite py-5">
+    <div class="container py-5">
+        <div class="tab-class text-center">
+            <div class="row g-4">
+                <div class="col-lg-4 text-start">
+                    <h1>Sản phẩm nổi bật</h1>
+                </div>
+                <div class="col-lg-8 text-end">
+                    <ul class="nav nav-pills d-inline-flex text-center mb-5">
+                        <li class="nav-item">
+                            <a class="d-flex m-2 py-2 bg-light rounded-pill active" th:href="@{/products}">
+                                <span class="text-dark" style="width: 130px;">All Products</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tab-content">
+                <div id="tab-1" class="tab-pane fade show p-0 active">
+                    <div class="row g-4">
+                        <div class="col-lg-12">
+                            <div class="row g-4">
+                                <div class="col-md-6 col-lg-4 col-xl-3" th:each="product : ${products}">
+                                    <div class="fruite-item">
+                                        <a th:href="@{/product/{id}(id=${product.id})}">
+                                            <div class="fruite-img">
+                                                <img th:src="@{/uploads/images/product/{fileName}(fileName=${product.image})}"
+                                                     class="img-fluid w-100 rounded-top" alt="">
+                                            </div>
+                                        </a>
+                                        <div class="text-white bg-secondary px-3 py-1 rounded position-absolute"
+                                             style="top: 10px; left: 10px;">Laptop
+                                        </div>
+                                        <div class="p-4 border-top-0">
+                                            <a th:href="@{/product/{id}(id=${product.id})}">
+                                                <h4 th:text="${product.name}"
+                                                    style="color: #81c408 !important; font-size: 25px; min-height: 50px; text-align: center;">
+                                                </h4>
+                                            </a>
+                                            <p th:text="${product.shortDesc}" style="font-size: 15px;"
+                                               class="text-center text-muted"></p>
+                                            <div class="d-flex justify-content-center flex-lg-wrap flex-column">
+                                                <p class="text-dark fw-bold mb-3"
+                                                   style="font-size: 17px; text-align: center; width: 100%;"
+                                                   th:text="|${#numbers.formatDecimal(product.price, 0, 'COMMA', 0, 'POINT')} đ|">
+                                                </p>
+                                                <form th:action="@{/add-product-from-home-to-cart/{id}(id=${product.id})}"
+                                                      method="post" class="mt-3">
+                                                    <input type="hidden" th:name="${_csrf.parameterName}"
+                                                           th:value="${_csrf.token}">
+                                                    <button class="btn-add-to-cart mx-auto">
+                                                        <i class="fa fa-shopping-bag"></i> Add to cart
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Fruits Shop End-->
+
+<!-- Featurs Section Start -->
+<div th:insert="~{client/layout/feature :: feature}"></div>
+<!-- Featurs Section End -->
+
+<!-- Footer-->
+<div th:insert="~{client/layout/footer :: footer}"></div>
+<!-- Footer-->
+
+<!-- Back to Top -->
+<a href="#" class="btn btn-primary border-3 border-primary rounded-circle back-to-top"><i
+        class="fa fa-arrow-up"></i></a>
+
+<!-- JavaScript Libraries -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+<script th:src="@{/client/lib/easing/easing.min.js}"></script>
+<script th:src="@{/client/lib/waypoints/waypoints.min.js}"></script>
+<script th:src="@{/client/lib/lightbox/js/lightbox.min.js}"></script>
+<script th:src="@{/client/lib/owlcarousel/owl.carousel.min.js}"></script>
+
+<!-- Template Javascript -->
+<script th:src="@{/client/js/main.js}"></script>
+</body>
+</html>

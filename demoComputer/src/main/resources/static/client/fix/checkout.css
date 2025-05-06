@@ -1,0 +1,122 @@
+@media (max-width: 768px) {
+    /* Điều chỉnh phần thông tin người nhận */
+    .col-12.col-md-6 {
+        margin-bottom: 15px;
+    }
+
+    .p-4.border.rounded {
+        padding: 15px !important;
+    }
+
+    .form-group {
+        margin-bottom: 12px !important;
+    }
+
+    .form-group label {
+        font-size: 14px;
+        margin-bottom: 5px !important;
+    }
+
+    .form-group input.form-control {
+        font-size: 14px;
+        padding: 8px;
+        height: 38px;
+    }
+
+    .mt-3 a.ms-2 {
+        font-size: 14px;
+    }
+
+    /* Điều chỉnh phần thông tin thanh toán */
+    .bg-light.rounded.mx-2 {
+        margin: 0 !important;
+        padding: 15px !important;
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Căn giữa các phần tử con theo chiều ngang */
+    }
+
+    .bg-light.rounded .p-4 {
+        padding: 10px !important;
+        width: 100%; /* Đảm bảo nội dung bên trong chiếm toàn bộ chiều rộng */
+    }
+
+    .display-6 {
+        font-size: 22px !important;
+        margin-bottom: 15px !important;
+        text-align: center; /* Căn giữa tiêu đề */
+    }
+
+    .d-flex.justify-content-between h5 {
+        font-size: 15px;
+        margin-bottom: 0;
+    }
+
+    .d-flex.justify-content-between p {
+        font-size: 14px;
+        margin-bottom: 0;
+    }
+
+    .py-4.border-top.border-bottom {
+        padding: 8px 0 !important;
+        width: 100%; /* Đảm bảo đường viền chiếm toàn bộ chiều rộng */
+    }
+
+    .py-4.border-top.border-bottom h5,
+    .py-4.border-top.border-bottom p {
+        font-size: 15px;
+        padding: 0 10px !important;
+    }
+
+    /* Điều chỉnh nút xác nhận thanh toán */
+    .btn.border-secondary.rounded-pill {
+        width: 90% !important; /* Giữ chiều rộng hợp lý, không quá sát mép */
+        margin: 15px auto !important; /* Căn giữa bằng margin auto */
+        padding: 10px !important;
+        font-size: 15px;
+        display: block; /* Đảm bảo nút là block để căn giữa dễ dàng */
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Tối ưu thêm cho màn hình rất nhỏ */
+    .p-4.border.rounded {
+        padding: 12px !important;
+    }
+
+    .form-group label {
+        font-size: 13px;
+    }
+
+    .form-group input.form-control {
+        font-size: 13px;
+        padding: 6px;
+        height: 34px;
+    }
+
+    .bg-light.rounded .p-4 {
+        padding: 8px !important;
+    }
+
+    .display-6 {
+        font-size: 20px !important;
+    }
+
+    .d-flex.justify-content-between h5,
+    .py-4.border-top.border-bottom h5 {
+        font-size: 14px;
+    }
+
+    .d-flex.justify-content-between p,
+    .py-4.border-top.border-bottom p {
+        font-size: 13px;
+    }
+
+    .btn.border-secondary.rounded-pill {
+        width: 95% !important; /* Tăng nhẹ chiều rộng cho màn hình nhỏ */
+        margin: 12px auto !important;
+        padding: 8px !important;
+        font-size: 14px;
+    }
+}

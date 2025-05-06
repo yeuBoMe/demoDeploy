@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <meta name="description" content="Yeu bo me - Laptopshop"/>
+    <meta name="author" content="Yeu bo me"/>
+    <title>Dashboard - Yeu bo me</title>
+    <link th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script th:src="@{/js/uploadFile.js}"></script>
+</head>
+<body class="sb-nav-fixed">
+<!-- header -->
+<div th:insert="~{admin/layout/header :: header}"></div>
+
+<div id="layoutSidenav">
+    <!--  sidebar  -->
+    <div th:insert="~{admin/layout/sidebar :: sidebar}"></div>
+    <div id="layoutSidenav_content">
+        <main>
+            <div class="container-fluid px-4">
+                <h1 class="mt-4">Manage Products</h1>
+                <ol class="breadcrumb mb-4">
+                    <li class="breadcrumb-item active">
+                        <a th:href="@{/admin}">Dashboard</a>
+                    </li>
+                    <li class="breadcrumb-item active">
+                        <a th:href="@{/admin/product}">Products</a>
+                    </li>
+                    <li class="breadcrumb-item active">Update</li>
+                </ol>
+                <div class="mt-5">
+                    <div class="row">
+                        <div class="col-md-6 col-12 mx-auto">
+                            <h3>Update product</h3>
+                            <hr/>
+                            <form th:action="@{/admin/product/update}" method="post" th:object="${updateProduct}"
+                                  enctype="multipart/form-data" class="row">
+                                <div class="mb-3 col-12" style="display: none;">
+                                    <label class="form-label">Id:</label>
+                                    <input type="text" class="form-control" th:field="*{id}"/>
+                                </div>
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label class="form-label">Name:</label>
+                                    <input type="text" class="form-control"
+                                           th:classappend="${#fields.hasErrors('name')} ? 'is-invalid' : ''"
+                                           th:field="*{name}"/>
+                                    <div th:if="${#fields.hasErrors('name')}"
+                                         class="invalid-feedback"
+                                         th:errors="*{name}">
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label class="form-label">Price:</label>
+                                    <input type="number" class="form-control"
+                                           th:classappend="${#fields.hasErrors('price')} ? 'is-invalid' : ''"
+                                           th:field="*{price}"/>
+                                    <div th:if="${#fields.hasErrors('price')}"
+                                         class="invalid-feedback"
+                                         th:errors="*{price}">
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-12">
+                                    <label class="form-label">Detail description:</label>
+                                    <textarea class="form-control" id="description" rows="5"
+                                              style="height: 70px;"
+                                              th:classappend="${#fields.hasErrors('detailDesc')} ? 'is-invalid' : ''"
+                                              th:field="*{detailDesc}">
+                                    </textarea>
+                                    <div th:if="${#fields.hasErrors('detailDesc')}"
+                                         class="invalid-feedback"
+                                         th:errors="*{detailDesc}">
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label class="form-label">Short description:</label>
+                                    <input type="text" class="form-control"
+                                           th:classappend="${#fields.hasErrors('shortDesc')} ? 'is-invalid' : ''"
+                                           th:field="*{shortDesc}"/>
+                                    <div th:if="${#fields.hasErrors('shortDesc')}"
+                                         class="invalid-feedback"
+                                         th:errors="*{shortDesc}">
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label class="form-label">Quantity:</label>
+                                    <input type="number" class="form-control"
+                                           th:classappend="${#fields.hasErrors('quantity')} ? 'is-invalid' : ''"
+                                           th:field="*{quantity}"/>
+                                    <div th:if="${#fields.hasErrors('quantity')}"
+                                         class="invalid-feedback"
+                                         th:errors="*{quantity}">
+                                    </div>
+                                </div>
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label class="form-label">Factory:</label>
+                                    <select class="form-select" th:field="*{factory}">
+                                        <option th:value="'APPLE'" th:text="'Apple (Macbook)'"></option>
+                                        <option th:value="'ASUS'" th:text="'Asus'"></option>
+                                        <option th:value="'LENOVO'" th:text="'Lenovo'"></option>
+                                        <option th:value="'DELL'" th:text="'Dell'"></option>
+                                        <option th:value="'LG'" th:text="'LG'"></option>
+                                        <option th:value="'ACER'" th:text="'Acer'"></option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label class="form-label">Target:</label>
+                                    <select class="form-select" th:field="*{target}">
+                                        <option th:value="'GAMING'" th:text="'Gaming'"></option>
+                                        <option th:value="'SINHVIEN-VANPHONG'"
+                                                th:text="'Sinh viên - Văn phòng'"></option>
+                                        <option th:value="'THIET-KE-DO-HOA'" th:text="'Thiết kế đồ họa'"></option>
+                                        <option th:value="'MONG-NHE'" th:text="'Mỏng nhẹ'"></option>
+                                        <option th:value="'DOANH-NHAN'" th:text="'Doanh nhân'"></option>
+                                    </select>
+                                </div>
+                                <div class="mb-3 col-md-6 col-12">
+                                    <label class="form-label">Image:</label>
+                                    <input type="file" id="avatarFile" class="form-control"
+                                           name="myFile" accept=".jpg, .png, .jpeg"/>
+                                </div>
+                                <div class="mb-3 col-12 text-center">
+                                    <img th:if="${updateProduct.image != null}"
+                                         th:src="@{/uploads/images/product/{fileName}(fileName=*{image})}"
+                                         alt="Product Image" style="max-height: 250px; display: block; margin: auto;"
+                                         id="avatarPreview">
+                                </div>
+                                <div class="mb-5 col-12">
+                                    <button class="btn btn-warning mt-3" type="submit">Update</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <!-- footer -->
+        <div th:insert="~{admin/layout/footer :: footer}"></div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        crossorigin="anonymous"></script>
+<script th:src="@{/js/scripts.js}"></script>
+</body>
+</html>

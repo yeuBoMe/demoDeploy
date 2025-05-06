@@ -1,0 +1,116 @@
+/* Styling for product detail section */
+.product-detail-container {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e9ecef;
+}
+
+.product-image {
+  border-radius: 10px;
+  overflow: hidden;
+  transition: 0.3s;
+}
+
+.product-image:hover {
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+.product-image img {
+  transition: 0.5s;
+}
+
+.product-image img:hover {
+  transform: scale(1.1);
+}
+
+.btn-add-to-cart {
+  background-color: transparent;
+  color: #81c408;
+  border: 2px solid #81c408;
+  border-radius: 30px;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  width: 50%;
+  text-align: center;
+}
+
+.btn-add-to-cart:hover {
+  background-color: #81c408;
+  color: #fff;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-add-to-cart i {
+  margin-right: 8px;
+}
+
+.quantity-btn {
+  background-color: #f5f7f5;
+  border: 1px solid #e9ecef;
+  color: #81c408;
+  transition: all 0.3s ease;
+}
+
+.quantity-btn:hover {
+  background-color: #81c408;
+  color: #fff;
+}
+
+/* Styling for category sidebar */
+.category-card {
+  background-color: #fafafa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+  border: 1px solid #e9ecef;
+}
+
+.category-card h4 {
+  color: #81c408;
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #81c408;
+}
+
+.fruite-categorie li {
+  padding: 10px 0;
+  border-bottom: 1px solid #e9ecef;
+  transition: 0.3s;
+}
+
+.fruite-categorie li:hover {
+  background-color: #e9f7e5;
+}
+
+.fruite-categorie a {
+  color: #2c3e50;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.fruite-categorie a:hover {
+  color: #81c408;
+}
+
+.fruite-categorie span {
+  color: #81c408;
+  font-weight: 600;
+}
+
+/* Tab styling */
+.nav-tabs .nav-link {
+  color: #81c408;
+  font-weight: 600;
+  border-radius: 10px 10px 0 0;
+}
+
+.nav-tabs .nav-link.active {
+  background-color: #81c408;
+  color: #fff;
+  border-color: #81c408;
+}
