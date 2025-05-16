@@ -39,8 +39,7 @@ public class SecurityConfiguration {
         DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
         daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
         daoAuthenticationProvider.setUserDetailsService(userDetailsService);
-        daoAuthenticationProvider.setHideUserNotFoundExceptions(false);
-
+        // daoAuthenticationProvider.setHideUserNotFoundExceptions(false);
         return daoAuthenticationProvider;
     }
 
@@ -73,15 +72,18 @@ public class SecurityConfiguration {
                 .formLogin(formLogin -> formLogin
                         .loginPage("/login")
                         .failureUrl("/login?error")
-                        .successHandler(authenticationSuccessHandler).permitAll()
+                        .successHandler(authenticationSuccessHandler)
+                        .permitAll()
                 )
                 .sessionManagement(session -> session
                         .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-                        .invalidSessionUrl("/logout?expired").maximumSessions(1)
+                        .invalidSessionUrl("/logout?expired")
+                        .maximumSessions(1)
                         .maxSessionsPreventsLogin(false)
                 )
                 .logout(logout -> logout
-                        .deleteCookies("JSESSIONID").invalidateHttpSession(true)
+                        .deleteCookies("JSESSIONID")
+                        .invalidateHttpSession(true)
                 )
                 .rememberMe(remember -> remember
                         .rememberMeServices(rememberMeServices())
