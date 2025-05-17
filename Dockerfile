@@ -14,11 +14,11 @@ COPY . .
 RUN chmod +x mvnw
 
 # Kiểm tra kết nối database
-RUN PGHOST=dpg-d0jge363jp1c739tan60-a.singapore-postgres.render.com \
+RUN PGHOST=dpg-d0k9810gjchc73a7shkg-a.singapore-postgres.render.com \
     PGPORT=5432 \
-    PGDATABASE=he \
+    PGDATABASE=hhe_9cc5e \
     PGUSER=admin \
-    PGPASSWORD=sEXzbHE9QAHuW3cmLlTZ1o9Qsz8nrzRs \
+    PGPASSWORD=1omneSh0DC6lQPo4ueZ28FbySVAXPytW \
     psql -c "SELECT 1" || exit 1
 
 # Build ứng dụng
