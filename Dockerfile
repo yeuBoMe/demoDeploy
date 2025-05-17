@@ -4,6 +4,8 @@ FROM openjdk:21-jdk-slim
 # Thiết lập thư mục làm việc
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y postgresql-client
+
 # Copy mã nguồn và file Maven Wrapper
 COPY . .
 
